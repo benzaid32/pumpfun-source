@@ -48,3 +48,17 @@ The pinned canonical source (`git archive e38a8b97a programs/pump`) reproduces
 unstripped `0f50faa8c325104dc77898ed84866dec2ad1eec475b6abba72c475cf7bf9bab6` and
 stripped `d0377d7cef5b7378063f8bfabac5dc9c08d29eeaaaaa14022d36909688ff5e1b`, scoring
 1,019/1,035 normalized and 188 raw windows.
+
+## Gate saved score reports
+
+After scoring a trial, compare its per-window memberships with the pinned baseline:
+
+```bash
+python3 reconstruction/harness/compare_scores.py reconstruction/pump-main/baseline/score.json /tmp/pump-out/score.json --json /tmp/pump-out/regressions.json
+```
+
+Exit status is 0 only when every normalized and raw membership is preserved and
+both inventories have identical addresses and lengths; 1 means a regression or
+inventory change, and 2 means malformed input. Gains cannot offset losses in other
+windows. Both harness score reports and inventory-format window lists are accepted.
+This gate checks saved results, not their provenance or the candidate binary itself.
