@@ -55,8 +55,8 @@ jobs:
         run: |
           export RUSTC="$HOME/.cache/pumpfun-reconstruction/toolchains/hybrid144/rust/bin/rustc"
           export CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
-          "$HOME/.cache/solana/v1.44/platform-tools/rust/bin/cargo" fetch --locked --target sbpf-solana-solana --manifest-path baseline/programs/pump/Cargo.toml
-          "$HOME/.cache/solana/v1.44/platform-tools/rust/bin/cargo" fetch --locked --target sbpf-solana-solana --manifest-path candidate/programs/pump/Cargo.toml
+          "$HOME/.cache/solana/v1.44/platform-tools/rust/bin/cargo" fetch --locked --manifest-path baseline/programs/pump/Cargo.toml
+          "$HOME/.cache/solana/v1.44/platform-tools/rust/bin/cargo" fetch --locked --manifest-path candidate/programs/pump/Cargo.toml
       - name: Build and compare with one scorer and isolated cold targets
         run: >-
           python -B tooling/reconstruction/harness/build_score_pair.py
